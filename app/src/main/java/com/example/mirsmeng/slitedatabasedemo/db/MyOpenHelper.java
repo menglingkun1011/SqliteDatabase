@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 
+import java.io.File;
+
 /**
  * Created by MirsMeng on 2017/11/10.
  */
@@ -34,5 +36,13 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 //        super.onDowngrade(db, oldVersion, newVersion);
+    }
+
+    public boolean delSuccess(){
+        File file = new File(name);
+        if(file.exists()){
+            return file.delete();
+        }
+        return true;
     }
 }

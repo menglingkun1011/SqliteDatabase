@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mirsmeng.slitedatabasedemo.db.MyOpenHelper;
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private MyOpenHelper myOpenHelper;
     private TextView tv;
     private StringBuilder sb = new StringBuilder();
+    private Button btn_del_db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.tv);
         myOpenHelper = new MyOpenHelper(this);
 
+        btn_del_db = (Button) findViewById(R.id.btn_del_db);
+        btn_del_db.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(myOpenHelper.delSuccess()){
+                    Toast.makeText(MainActivity.this, "删除成功！", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "删除失败！", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
     //通过sql语句进行增删改查
     /*public void add(View v){
@@ -116,4 +130,6 @@ public class MainActivity extends AppCompatActivity {
         }
         database.close();
     }
+
+
 }
