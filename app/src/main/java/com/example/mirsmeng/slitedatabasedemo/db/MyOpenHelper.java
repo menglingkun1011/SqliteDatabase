@@ -3,6 +3,7 @@ package com.example.mirsmeng.slitedatabasedemo.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 
 /**
  * Created by MirsMeng on 2017/11/10.
@@ -10,8 +11,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
 
+    private static final String name = Environment.getExternalStorageDirectory()+"/naive/std.db"; //数据库路径及名称
+
     public MyOpenHelper(Context context) {
-        super(context, "std.db", null, 1);
+        super(context, name, null, 1);
     }
 
     //当数据库第一次创建的时候调用，适合做创建表操作，如果数据库文件已经创建  则不会调用

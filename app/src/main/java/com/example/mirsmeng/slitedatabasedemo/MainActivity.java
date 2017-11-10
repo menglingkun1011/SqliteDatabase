@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     //通过android提供的api 进行增删改查
     public void add(View v){
         database = myOpenHelper.getWritableDatabase();
+        Log.d(TAG, "数据库路径: "+database.getPath());
         ContentValues values = new ContentValues();
         values.put("name","乾坤");
         values.put("age",24);
